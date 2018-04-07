@@ -11,6 +11,6 @@
 <dependency>
 	<groupId>com.github.vindell</groupId>
 	<artifactId>spring-boot-starter-validation-mimetypes</artifactId>
-	<version>${project.version}</version>
+	<version>1.0.0.RELEASE</version>
 </dependency>
 ```
