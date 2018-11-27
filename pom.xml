@@ -453,6 +453,13 @@
 		    <artifactId>mime-types</artifactId>
 		    <version>${mime-types.version}</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.github.amr/mimetypes -->
+		<dependency>
+		    <groupId>com.github.amr</groupId>
+		    <artifactId>mimetypes</artifactId>
+		    <version>0.0.3</version>
+		</dependency>
+				
 
 	</dependencies>
 
