@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.github.vindell.validator.constraints;
+package com.github.vindell.validation.constraints;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -23,7 +23,7 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-import org.github.vindell.validator.internal.constraintvalidators.FileExtensionValidator;
+import com.github.vindell.validation.internal.constraintvalidators.FileExtensionValidator;
 
 
 @Target(ElementType.FIELD)

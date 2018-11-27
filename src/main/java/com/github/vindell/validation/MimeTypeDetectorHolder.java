@@ -16,7 +16,7 @@
 /**
  * 
  */
-package org.github.vindell.validator;
+package com.github.vindell.validation;
 
 import org.overviewproject.mime_types.MimeTypeDetector;
 

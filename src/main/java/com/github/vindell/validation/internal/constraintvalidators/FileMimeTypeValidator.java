@@ -13,41 +13,33 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.github.vindell.validator.internal.constraintvalidators;
-
-import java.io.IOException;
+package com.github.vindell.validation.internal.constraintvalidators;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import org.github.vindell.validator.constraints.StrictExtensionCheck;
-import org.github.vindell.validator.utils.FiletypeUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.github.vindell.validation.constraints.MimeTypeCheck;
 
-public class StrictFileExtensionValidator implements ConstraintValidator<StrictExtensionCheck, MultipartFile>{
+
+public class FileMimeTypeValidator implements ConstraintValidator<MimeTypeCheck, MultipartFile>{
 	
 	private static final String ANY = "*";
-	private String[] extensions;
+	private String[] mimeTypes;
 	
 	@Override
-	public void initialize(StrictExtensionCheck annotation) {
-		this.extensions = annotation.extensions();
+	public void initialize(MimeTypeCheck annotation) {
+		this.mimeTypes = annotation.mimeTypes();
 	}
 
 	@Override
 	public boolean isValid(MultipartFile value, ConstraintValidatorContext context) {
 		
-		try {
-			// 根据文件头获取文件后缀类型
-			String detectExtension = FiletypeUtils.getFileType(value.getBytes());
-			for (String extension : extensions) {
-				if(ANY.equals(extension) || extension.equalsIgnoreCase(detectExtension)) {
-					return true;
-				}
+		for (String mimeType : mimeTypes) {
+			if(ANY.equals(mimeType) || value.getContentType().startsWith(mimeType)) {
+				return true;
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 		
 		return false;

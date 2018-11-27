@@ -1,4 +1,4 @@
-package org.github.vindell.validator.utils;
+package com.github.vindell.validation.utils;
 
 import java.io.File;
 import java.util.Properties;

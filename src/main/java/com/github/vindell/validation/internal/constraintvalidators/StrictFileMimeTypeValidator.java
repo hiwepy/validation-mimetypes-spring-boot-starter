@@ -13,18 +13,19 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.github.vindell.validator.internal.constraintvalidators;
+package com.github.vindell.validation.internal.constraintvalidators;
 
 import java.io.IOException;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import org.github.vindell.validator.MimeTypeDetectorHolder;
-import org.github.vindell.validator.constraints.StrictMimeTypeCheck;
-import org.github.vindell.validator.utils.FilemimeUtils;
 import org.overviewproject.mime_types.GetBytesException;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.github.vindell.validation.MimeTypeDetectorHolder;
+import com.github.vindell.validation.constraints.StrictMimeTypeCheck;
+import com.github.vindell.validation.utils.FilemimeUtils;
 
 
 public class StrictFileMimeTypeValidator implements ConstraintValidator<StrictMimeTypeCheck, MultipartFile>{

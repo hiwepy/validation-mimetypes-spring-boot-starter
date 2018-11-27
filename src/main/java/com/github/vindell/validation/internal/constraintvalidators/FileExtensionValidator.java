@@ -13,14 +13,15 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.github.vindell.validator.internal.constraintvalidators;
+package com.github.vindell.validation.internal.constraintvalidators;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 import org.apache.commons.io.FilenameUtils;
-import org.github.vindell.validator.constraints.ExtensionCheck;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.github.vindell.validation.constraints.ExtensionCheck;
 
 
 public class FileExtensionValidator implements ConstraintValidator<ExtensionCheck, MultipartFile>{
