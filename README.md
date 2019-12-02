@@ -1,4 +1,4 @@
-# spring-boot-starter-validation-mimetypes
+# validation-mimetypes-spring-boot-starter
 
 
 ### 说明
@@ -10,7 +10,7 @@
 ``` xml
 <dependency>
 	<groupId>com.github.vindell</groupId>
-	<artifactId>spring-boot-starter-validation-mimetypes</artifactId>
+	<artifactId>validation-mimetypes-spring-boot-starter</artifactId>
 	<version>${project.version}</version>
 </dependency>
 ```
