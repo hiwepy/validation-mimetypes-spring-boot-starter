@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, vindell (https://github.com/vindell).
+ * Copyright (c) 2018, hiwepy (https://github.com/hiwepy).
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.github.vindell.validation.internal.constraintvalidators;
+package com.github.hiwepy.validation.internal.constraintvalidators;
 
 import java.io.IOException;
 
@@ -23,9 +23,9 @@ import javax.validation.ConstraintValidatorContext;
 import org.overviewproject.mime_types.GetBytesException;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.github.vindell.validation.MimeTypeDetectorHolder;
-import com.github.vindell.validation.constraints.StrictMimeTypeCheck;
-import com.github.vindell.validation.utils.FilemimeUtils;
+import com.github.hiwepy.validation.MimeTypeDetectorHolder;
+import com.github.hiwepy.validation.constraints.StrictMimeTypeCheck;
+import com.github.hiwepy.validation.utils.FilemimeUtils;
 
 
 public class StrictFileMimeTypeValidator implements ConstraintValidator<StrictMimeTypeCheck, MultipartFile>{

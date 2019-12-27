@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, vindell (https://github.com/vindell).
+ * Copyright (c) 2018, hiwepy (https://github.com/hiwepy).
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -13,34 +13,31 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.github.vindell.validation.internal.constraintvalidators;
+package com.github.hiwepy.validation.internal.constraintvalidators;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import org.apache.commons.io.FilenameUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.github.vindell.validation.constraints.ExtensionCheck;
+import com.github.hiwepy.validation.constraints.MimeTypeCheck;
 
 
-public class FileExtensionValidator implements ConstraintValidator<ExtensionCheck, MultipartFile>{
+public class FileMimeTypeValidator implements ConstraintValidator<MimeTypeCheck, MultipartFile>{
 	
 	private static final String ANY = "*";
-	private String[] extensions;
+	private String[] mimeTypes;
 	
 	@Override
-	public void initialize(ExtensionCheck annotation) {
-		this.extensions = annotation.extensions();
+	public void initialize(MimeTypeCheck annotation) {
+		this.mimeTypes = annotation.mimeTypes();
 	}
 
 	@Override
 	public boolean isValid(MultipartFile value, ConstraintValidatorContext context) {
 		
-		String detectExtension = FilenameUtils.getExtension(value.getName());
-		
-		for (String extension : extensions) {
-			if(ANY.equals(extension) || extension.equalsIgnoreCase(detectExtension)) {
+		for (String mimeType : mimeTypes) {
+			if(ANY.equals(mimeType) || value.getContentType().startsWith(mimeType)) {
 				return true;
 			}
 		}

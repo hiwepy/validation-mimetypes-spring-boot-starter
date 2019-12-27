@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, vindell (https://github.com/vindell).
+ * Copyright (c) 2018, hiwepy (https://github.com/hiwepy).
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.github.vindell.validation.constraints;
+package com.github.hiwepy.validation.constraints;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -23,22 +23,22 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-import com.github.vindell.validation.internal.constraintvalidators.StrictFileExtensionValidator;
+import com.github.hiwepy.validation.internal.constraintvalidators.StrictFileMimeTypeValidator;
 
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = StrictFileExtensionValidator.class)
-public @interface StrictExtensionCheck {
+@Constraint(validatedBy = StrictFileMimeTypeValidator.class)
+public @interface StrictMimeTypeCheck {
 	
-	String message() default "File Suffix error";
+	String message() default "File MIME type error";
     
 	Class<?>[] groups() default {};
     
 	Class<? extends Payload>[] payload() default {};
 	/**
-	 * @return the extension the annotated string must match, e.g. pdf . Per default any mime type  is allowed
+	 * @return the mime type the annotated string must match, e.g. application/pdf. Per default any mime type  is allowed
 	 */
-	String[] extensions() default {"*"};
+	String[] mimeTypes() default {"*"};
 	
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, vindell (https://github.com/vindell).
+ * Copyright (c) 2018, hiwepy (https://github.com/hiwepy).
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.github.vindell.validation.internal.constraintvalidators;
+package com.github.hiwepy.validation.internal.constraintvalidators;
 
 import java.io.IOException;
 
@@ -22,8 +22,8 @@ import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.github.vindell.validation.constraints.StrictExtensionCheck;
-import com.github.vindell.validation.utils.FiletypeUtils;
+import com.github.hiwepy.validation.constraints.StrictExtensionCheck;
+import com.github.hiwepy.validation.utils.FiletypeUtils;
 
 
 public class StrictFileExtensionValidator implements ConstraintValidator<StrictExtensionCheck, MultipartFile>{
