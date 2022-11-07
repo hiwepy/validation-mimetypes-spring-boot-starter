@@ -64,7 +64,7 @@ public class FileNotEmptyValidator implements ConstraintValidator<FileNotEmpty, 
                 log.error(e.getMessage(), e);
             }
             if(!StringUtils.hasText(detectExtension)){
-                detectExtension = FilenameUtils.getExtension(multipartFile.getName());
+                detectExtension = FilenameUtils.getExtension(multipartFile.getOriginalFilename());
             }
             if(!StringUtils.hasText(detectExtension)){
                 return Boolean.FALSE;
@@ -77,7 +77,7 @@ public class FileNotEmptyValidator implements ConstraintValidator<FileNotEmpty, 
         if (!mimeTypeSet.isEmpty()) {
             String detectMimeType = null;
             try {
-                detectMimeType = MimeTypeDetectorHolder.instance().getDetector().detectMimeType(multipartFile.getName(), multipartFile.getInputStream());
+                detectMimeType = MimeTypeDetectorHolder.instance().getDetector().detectMimeType(multipartFile.getOriginalFilename(), multipartFile.getInputStream());
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
                 return Boolean.FALSE;
