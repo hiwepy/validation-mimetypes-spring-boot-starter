@@ -52,8 +52,8 @@ public class FileNotEmptyValidator implements ConstraintValidator<FileNotEmpty, 
             return !required;
         }
         // 2、验证文件大小是否满足要求
-        if (Objects.nonNull(maxSize)) {
-            return maxSize.compareTo(DataSize.of(multipartFile.getSize(), DataUnit.BYTES)) > 0;
+        if (Objects.nonNull(maxSize) && maxSize.compareTo(DataSize.of(multipartFile.getSize(), DataUnit.BYTES)) <= 0) {
+            return Boolean.FALSE;
         }
         // 3、验证文件后缀是否满足要求
         if (!extensionSet.isEmpty()) {
@@ -67,9 +67,11 @@ public class FileNotEmptyValidator implements ConstraintValidator<FileNotEmpty, 
                 detectExtension = FilenameUtils.getExtension(multipartFile.getName());
             }
             if(!StringUtils.hasText(detectExtension)){
-               return Boolean.FALSE;
+                return Boolean.FALSE;
             }
-            return extensionSet.contains(detectExtension.toLowerCase());
+            if(!extensionSet.contains(detectExtension.toLowerCase())){
+                return Boolean.FALSE;
+            }
         }
         // 4、验证文件 content type 是否满足要求
         if (!mimeTypeSet.isEmpty()) {
@@ -80,10 +82,12 @@ public class FileNotEmptyValidator implements ConstraintValidator<FileNotEmpty, 
                 log.error(e.getMessage(), e);
                 return Boolean.FALSE;
             }
-            if(StringUtils.hasText(detectMimeType)){
-                return mimeTypeSet.contains(detectMimeType.toLowerCase());
+            if(!StringUtils.hasText(detectMimeType)){
+                return Boolean.FALSE;
             }
-            return Boolean.FALSE;
+            if(!mimeTypeSet.contains(detectMimeType.toLowerCase())){
+                return Boolean.FALSE;
+            }
         }
         return Boolean.TRUE;
     }
