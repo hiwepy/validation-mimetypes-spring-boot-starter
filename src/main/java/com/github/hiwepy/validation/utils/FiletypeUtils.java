@@ -2,12 +2,9 @@ package com.github.hiwepy.validation.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Properties;
-import java.util.concurrent.Callable;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ArrayUtils;
@@ -65,46 +62,10 @@ public abstract class FiletypeUtils {
 		return fileSuffix;
 	}
 
-    private static byte[] inputStreamToFirstBytes(InputStream is) throws IOException {
-        int extent = 11;
-        int cur = 0;
-        byte[] ret = new byte[extent];
-
-        is.mark(extent); // throws IOException if not supported
-
-        while (cur < extent) {
-            int n = is.read(ret, cur, extent - cur);
-            if (n == -1) {
-                // EOF; return a correctly-sized Array
-                is.reset();
-                return Arrays.copyOf(ret, cur);
-            } else {
-                cur += n;
-            }
-        }
-
-        is.reset();
-
-        return ret;
-    }
-
-    public static String getFileType(InputStream is) throws IOException {
-        Callable<byte[]> getBytes = new Callable<byte[]>() {
-            @Override
-            public byte[] call() throws IOException {
-                return inputStreamToFirstBytes(is);
-            }
-        };
-
-        byte[] bytes;
-        try {
-            bytes = getBytes.call();
-        } catch (Exception e) {
-            throw new IOException(e);
-        }
-        if (bytes == null || bytes.length < 11) {
-            return null;
-        }
+	public static String getFileType(byte[] bytes) {
+		if (bytes == null || bytes.length < 11) {
+			return null;
+		}
 		
 		String header = bytesToHexString(ArrayUtils.subarray(bytes, 0, 10));
 		String fileSuffix = mFileTypes.getProperty(header);
