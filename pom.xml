@@ -365,7 +365,7 @@
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
         <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
 		<maven-nexus-staging-plugin.version>1.6.8</maven-nexus-staging-plugin.version>
-		<mime-types.version>0.0.2</mime-types.version>
+		<mime-types.version>1.0.4</mime-types.version>
 	</properties>
 
 	<dependencies>
@@ -447,15 +447,7 @@
 		    <artifactId>mime-types</artifactId>
 		    <version>${mime-types.version}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.github.amr/mimetypes -->
-		<dependency>
-		    <groupId>com.github.amr</groupId>
-		    <artifactId>mimetypes</artifactId>
-		    <version>0.0.3</version>
-		</dependency>
-
 
 	</dependencies>
-
 
 </project>
