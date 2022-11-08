@@ -59,7 +59,7 @@ public class FileNotEmptyValidator implements ConstraintValidator<FileNotEmpty, 
         if (!extensionSet.isEmpty()) {
             String detectExtension = null;
             try {
-                detectExtension = FiletypeUtils.getFileType(multipartFile.getBytes());
+                detectExtension = FiletypeUtils.getFileType(multipartFile.getInputStream());
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
             }
