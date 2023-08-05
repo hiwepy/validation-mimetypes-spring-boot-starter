@@ -12,7 +12,6 @@ import java.util.concurrent.Callable;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.overviewproject.mime_types.GetBytesException;
 
 @SuppressWarnings("rawtypes")
 public abstract class FiletypeUtils {
@@ -89,7 +88,7 @@ public abstract class FiletypeUtils {
         return ret;
     }
 
-	public static String getFileType(InputStream is) throws IOException {
+    public static String getFileType(InputStream is) throws IOException {
         Callable<byte[]> getBytes = new Callable<byte[]>() {
             @Override
             public byte[] call() throws IOException {
@@ -103,9 +102,9 @@ public abstract class FiletypeUtils {
         } catch (Exception e) {
             throw new IOException(e);
         }
-		if (bytes == null || bytes.length < 11) {
-			return null;
-		}
+        if (bytes == null || bytes.length < 11) {
+            return null;
+        }
 		
 		String header = bytesToHexString(ArrayUtils.subarray(bytes, 0, 10));
 		String fileSuffix = mFileTypes.getProperty(header);
