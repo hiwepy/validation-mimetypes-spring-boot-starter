@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-io.github.hiwepy.validation.MimeTypeValidationAutoConfiguration
+io.github.easy4j.validation.MimeTypeValidationAutoConfiguration
