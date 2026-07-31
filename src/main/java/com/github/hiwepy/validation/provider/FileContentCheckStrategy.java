@@ -1,4 +1,4 @@
-package io.github.hiwepy.validation.provider;
+package io.github.easy4j.validation.provider;
 
 import org.apache.tika.mime.MimeType;
 import org.springframework.beans.factory.InitializingBean;
