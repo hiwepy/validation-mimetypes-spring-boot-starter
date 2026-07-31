@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.github.hiwepy.validation;
+package io.github.easy4j.validation;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.tika.Tika;
