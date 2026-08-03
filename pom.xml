@@ -369,9 +369,16 @@
 		<commons-io.version>2.19.0</commons-io.version>
         <commons-lang3.version>3.18.0</commons-lang3.version>
 		<tika.version>3.2.3</tika.version>
+		<validation-api-extension.version>2.0.x.20260630-SNAPSHOT</validation-api-extension.version>
 	</properties>
 
 	<dependencies>
+		<!-- Shared framework-neutral validation constraints and content checks. -->
+		<dependency>
+			<groupId>io.github.easy4j</groupId>
+			<artifactId>validation-api-extension</artifactId>
+			<version>${validation-api-extension.version}</version>
+		</dependency>
 
 		
 		<dependency>
@@ -478,12 +485,6 @@
 			<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.11.0</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
