@@ -149,9 +149,7 @@
 					<version>${maven-surefire-plugin.version}</version>
 					<configuration>
 						
-						<skip>true</skip>
-						<skipTests>true</skipTests>
-						<argLine>-Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=256m -Dfile.encoding=UTF-8</argLine>
+						<argLine>-Xmx1024m -Dfile.encoding=UTF-8</argLine>
 						<additionalClasspathElements>
 							<additionalClasspathElement>${basedir}/target/test-classes</additionalClasspathElement>
 						</additionalClasspathElements>
@@ -368,10 +366,16 @@
 		<asm.version>9.8</asm.version>
 		<commons-io.version>2.19.0</commons-io.version>
         <commons-lang3.version>3.18.0</commons-lang3.version>
-		<tika.version>3.2.3</tika.version>
+		<tika.version>3.3.1</tika.version>
+		<validation-api-extension.version>3.0.x.20260630-SNAPSHOT</validation-api-extension.version>
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>io.github.easy4j</groupId>
+			<artifactId>validation-api-extension</artifactId>
+			<version>${validation-api-extension.version}</version>
+		</dependency>
 
 		
 		<dependency>
@@ -453,23 +457,6 @@
 			<version>${asm.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>${commons-io.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-            <version>${commons-lang3.version}</version>
-        </dependency>
-		
-		<dependency>
-			<groupId>org.apache.tika</groupId>
-			<artifactId>tika-core</artifactId>
-			<version>${tika.version}</version>
-		</dependency>
-		
-		<dependency>
 			<groupId>org.apache.tika</groupId>
 			<artifactId>tika-parsers-standard-package</artifactId>
 			<version>${tika.version}</version>
@@ -483,7 +470,7 @@
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
-			<version>2.11.0</version>
+			<version>${commons-io.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

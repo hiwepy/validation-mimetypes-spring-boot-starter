@@ -4,37 +4,31 @@ import io.github.easy4j.validation.provider.FileContentCheckProvider;
 import io.github.easy4j.validation.provider.FileContentCheckStrategy;
 import org.apache.tika.Tika;
 import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.util.stream.Collectors;
+import java.util.List;
 
-@Configuration
-@ConditionalOnClass({Tika.class})
+/**
+ * 文件类型安全校验自动配置。
+ */
+@AutoConfiguration
+@ConditionalOnClass(Tika.class)
 public class MimeTypeValidationAutoConfiguration {
 
-    @Bean
-    public FileContentCheckStrategy fileContentCheckStrategy(ObjectProvider<FileContentCheckProvider> fileContentCheckProviders) {
-        return new FileContentCheckStrategy(fileContentCheckProviders.stream().collect(Collectors.toList()));
-    }
-
+    /**
+     * 汇总应用声明的文件内容检查组件。
+     *
+     * @param providers 内容检查提供者
+     * @return 内容检查策略
+     */
     @Bean
     @ConditionalOnMissingBean
-    public FileContentCheckProvider fileContentCheckProvider() {
-        return new FileContentCheckProvider() {
-            @Override
-            public Boolean check(MultipartFile multipartFile) {
-                return Boolean.TRUE;
-            }
-
-            @Override
-            public String support() {
-                return "*/*";
-            }
-        };
+    public FileContentCheckStrategy fileContentCheckStrategy(
+            ObjectProvider<FileContentCheckProvider> providers) {
+        List<FileContentCheckProvider> contentCheckProviders = providers.orderedStream().toList();
+        return new FileContentCheckStrategy(contentCheckProviders);
     }
-
 }
