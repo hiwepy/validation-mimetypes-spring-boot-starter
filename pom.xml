@@ -367,9 +367,16 @@
         <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
 		<maven-nexus-staging-plugin.version>1.6.8</maven-nexus-staging-plugin.version>
 		<tika.version>2.9.4</tika.version>
+		<validation-api-extension.version>1.0.x.20260630-SNAPSHOT</validation-api-extension.version>
 	</properties>
 
 	<dependencies>
+		<!-- Shared framework-neutral validation constraints and content checks. -->
+		<dependency>
+			<groupId>io.github.easy4j</groupId>
+			<artifactId>validation-api-extension</artifactId>
+			<version>${validation-api-extension.version}</version>
+		</dependency>
 
 		<!-- Java Servlet API -->
 		<dependency>
@@ -476,12 +483,6 @@
 			<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.11.0</version>
 			<scope>test</scope>
 		</dependency>
 			<dependency>
