@@ -415,6 +415,7 @@
         <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
         <maven-nexus-staging-plugin.version>1.6.8</maven-nexus-staging-plugin.version>
         <mime-types.version>0.0.2</mime-types.version>
+                <mimetypes.version>0.0.3</mimetypes.version>
     </properties>
 
     <dependencies>
@@ -509,11 +510,22 @@
         <dependency>
             <groupId>com.github.amr</groupId>
             <artifactId>mimetypes</artifactId>
-            <version>0.0.3</version>
+            <version>${mimetypes.version}</version>
         </dependency>
 
 
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.github.amr</groupId>
+                <artifactId>mimetypes</artifactId>
+                <version>${mimetypes.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
 
 
 </project>
