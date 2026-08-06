@@ -1,34 +1,176 @@
+<a id="readme-top"></a>
+
+<div align="center">
+
 # validation-mimetypes-spring-boot-starter
 
+**Spring Boot Starter for validation-api**
 
-### 说明
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.easy4j/validation-mimetypes-spring-boot-starter)](https://github.com/easy-4-java/validation-mimetypes-spring-boot-starter)
+[![Java](https://img.shields.io/badge/Java-17-orange)](#3-requirements-and-compatibility)
+[![License](https://img.shields.io/badge/license-Apache-2.0-green)](https://www.apache.org/licenses/LICENSE-2.0)
 
- > 基于validation-api + mimetypes 实现的文件类型校验
+[简体中文](./README.zh-CN.md) | [English](./README.md)
 
-### Maven
+[Positioning](#1-positioning) · [Capabilities](#2-core-capabilities) ·
+[Dependency](#5-dependency) · [Quick Start](#6-quick-start) ·
+[Configuration](#7-configuration-reference) · [Versions](#9-version-lines-and-compatibility) ·
+[Build](#10-build-and-test) · [License](#12-license)
 
-``` xml
+</div>
+
+---
+
+> **Current Version**：`3.2.x.20260630-SNAPSHOT`<br>
+> **JDK Baseline**：`17`<br>
+> **Group ID**：`io.github.easy4j`<br>
+> **Artifact ID**：`validation-mimetypes-spring-boot-starter`<br>
+> **License**：Apache License 2.0<br>
+
+## 1. Positioning
+
+**validation-mimetypes-spring-boot-starter** is a Spring Boot starter that integrates **validation-api** for applications using validation-api. It provides auto-configuration, property binding, and ready-to-use beans so that applications can consume validation-api capabilities with minimal setup.
+
+| Dimension | Description |
+|---|---|
+| Type | Spring Boot Starter |
+| Consumers | Spring Boot applications using validation-api |
+| Core Capabilities | auto-configuration, property binding, ready-to-use beans for validation-api |
+| JDK | `17` |
+| Coordinates | `io.github.easy4j:validation-mimetypes-spring-boot-starter:3.2.x.20260630-SNAPSHOT` |
+| Config Prefix | `validation.mimetypes` |
+
+## 2. Core Capabilities
+
+| Capability | Status | Description |
+|---|:---:|---|
+| Auto-configuration | ✅ Stable | Registers validation-api beans automatically |
+| Property Binding | ✅ Stable | Binds `validation.mimetypes.*` to `Properties` |
+| `FileContentCheckStrategy` bean | ✅ Stable | Auto-registered via MimeTypeValidationAutoConfiguration |
+
+## 3. Requirements and Compatibility
+
+| Dependency | Minimum | Evidence |
+|---|---:|---|
+| JDK | `17` | `pom.xml` |
+| Spring Boot | `3.2.12` | `pom.xml` parent |
+| Maven | `3.6+` | Maven Enforcer |
+
+## 4. Auto-configuration
+
+The starter auto-configures the following beans:
+
+| Bean | Condition | Missing Behavior |
+|---|---|---|
+| `FileContentCheckStrategy` | classpath + property | not created |
+| `FileContentCheckProvider` | classpath + property | not created |
+
+Auto-configuration registration:
+
+- `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports` (Spring Boot 2.7+ / 3.x / 4.x)
+- `META-INF/spring.factories` (Spring Boot 2.x legacy)
+
+## 5. Dependency
+
+```xml
 <dependency>
-	<groupId>com.github.hiwepy</groupId>
-	<artifactId>validation-mimetypes-spring-boot-starter</artifactId>
-	<version>${project.version}</version>
+    <groupId>io.github.easy4j</groupId>
+    <artifactId>validation-mimetypes-spring-boot-starter</artifactId>
+    <version>3.2.x.20260630-SNAPSHOT</version>
 </dependency>
 ```
 
-> 默认使用非严格模式， 即允许文件扩展名和MIME类型不匹配的情况。如果需要严格模式，请在添加一下依赖：
+This starter depends on the following components (managed by ddd4j BOM):
 
-``` yaml
-<!-- Tika文件解析器整合包 -->
+```xml
 <dependency>
-    <groupId>org.apache.tika</groupId>
-    <artifactId>tika-parsers-standard-package</artifactId>
-    <version>${tika.version}</version>
+    <groupId>io.github.easy4j</groupId>
+    <artifactId>validation-api-extension</artifactId>
 </dependency>
 ```
 
-并指定 `@FileNotEmpty` 注解的 `strict` 属性为 `true`，如下所示：
+## 6. Quick Start
 
-``` java
-@FileNotEmpty(strict = true, extensions = { "jpg", "png" }, mimeTypes = { "image/jpeg", "image/png" })
-private MultipartFile file;
+### 6.1 Add dependency
+
+Add the dependency above to your `pom.xml`.
+
+### 6.2 Configure
+
+```yaml
+validation.mimetypes:
+  enabled: true
 ```
+
+### 6.3 Use the bean
+
+```java
+@SpringBootApplication
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+```
+
+Then inject the auto-configured bean in your code:
+
+```java
+@Autowired
+private FileContentCheckStrategy fileContentCheckStrategy;
+```
+
+## 7. Configuration Reference
+
+### 7.1 Config Prefix
+
+`validation.mimetypes`
+
+### 7.2 Configuration Items
+
+| Property | Type | Default | Required | Description | Sensitive |
+|---|---|---|:---:|---|:---:|
+| `validation.mimetypes.enabled` | boolean | `true` | No | Enable the starter | No |
+<!-- additional properties below -->
+
+## 8. Version Lines and Compatibility
+
+| Branch | JDK | Spring Boot | Component Version | Status |
+|---|---:|---:|---|:---:|
+| `2.3.x` / `2.7.x` | `8+` | 2.3.x / 2.7.x | `1.0.x` | Maintenance |
+| `3.0.x` ~ `3.5.x` | `17` | 3.x | `2.0.x` | Maintenance |
+| `4.0.x` / `4.1.x` | `17+` | 4.x | `3.0.x` | Active |
+
+## 9. Build and Test
+
+```bash
+mvn clean verify
+mvn -pl validation-mimetypes-spring-boot-starter -am test
+```
+
+## 10. Troubleshooting
+
+| Symptom | Diagnosis | Resolution |
+|---|---|---|
+| Bean not created | Check auto-configuration report | Verify `validation.mimetypes.enabled=true` and classpath |
+| `ClassNotFoundException` | Missing dependency | Add the required module |
+| Version conflict | `mvn dependency:tree` | Use BOM for version alignment |
+
+## 11. Contribution
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Run `mvn clean verify` before submitting.
+4. Submit a pull request.
+
+## 12. License
+
+This project is licensed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+
+---
+
+<div align="center">
+
+[Back to top](#readme-top) · [Issues](https://github.com/easy-4-java/validation-mimetypes-spring-boot-starter/issues) · [Repository](https://github.com/easy-4-java/validation-mimetypes-spring-boot-starter)
+
+</div>
