@@ -11,7 +11,7 @@ import java.util.function.Function;
 /**
  * jsr303 文件格式校验注解
  *
- * @author wandl
+ * @author [@Loong Wan](https://github.com/loong10k)
  * @version 1.0
  * @since 2022.11.07
  */
