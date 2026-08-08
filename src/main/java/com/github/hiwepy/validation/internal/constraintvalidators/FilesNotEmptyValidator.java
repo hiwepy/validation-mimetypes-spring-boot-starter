@@ -24,7 +24,7 @@ import java.util.stream.Stream;
 
 /**
  * 多文件校验
- * @author wandl
+ * @author [@Loong Wan](https://github.com/loong10k)
  * @version 1.0
  * @since 2022.11.07
  */
