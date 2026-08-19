@@ -12,17 +12,20 @@ import org.springframework.context.annotation.Bean;
 import java.util.List;
 
 /**
- * 文件类型安全校验自动配置。
+ * <p>Auto-configuration for MIME type-based file content validation using Apache Tika.</p>
+ *
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
  */
 @AutoConfiguration
 @ConditionalOnClass(Tika.class)
 public class MimeTypeValidationAutoConfiguration {
 
     /**
-     * 汇总应用声明的文件内容检查组件。
+     * <p>Aggregates all declared file content check providers into a unified strategy.</p>
      *
-     * @param providers 内容检查提供者
-     * @return 内容检查策略
+     * @param providers the content check providers
+     * @return a {@link FileContentCheckStrategy} aggregating all providers
      */
     @Bean
     @ConditionalOnMissingBean
